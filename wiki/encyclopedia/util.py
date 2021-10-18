@@ -9,8 +9,28 @@ def list_entries():
     Returns a list of all names of encyclopedia entries.
     """
     _, filenames = default_storage.listdir("entries")
-    return list(sorted(re.sub(r"\.md$", "", filename)
-                for filename in filenames if filename.endswith(".md")))
+    return list(
+        sorted(
+            re.sub(r"\.md$", "", filename)
+            for filename in filenames
+            if filename.endswith(".md")
+        )
+    )
+
+
+def search_entries_substring(substring):
+    """
+    Returns a list of all names of encyclopedia entries that contains the substring.
+    """
+    _, filenames = default_storage.listdir("entries")
+
+    return list(
+        sorted(
+            re.sub(r"\.md$", "", filename)
+            for filename in filenames
+            if filename.endswith(".md") and substring in filename
+        )
+    )
 
 
 def save_entry(title, content):
