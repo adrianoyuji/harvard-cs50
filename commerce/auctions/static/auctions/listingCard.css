@@ -1,0 +1,74 @@
+.listingContainer {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+.listingCard {
+  width: 95%;
+  margin: 2.5%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #efefef;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: ease-in-out 0.3s;
+  color: #282828;
+}
+
+.listingCard:hover {
+  transform: scale(0.95);
+  color: #101010;
+  text-decoration: none;
+}
+
+.listingCard h4 {
+  font-weight: bold;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.listingCard p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+}
+.listingCard img {
+  object-fit: cover;
+  border-radius: 8px;
+}
+.listingCreated {
+  color: #686868;
+  font-size: 0.75rem;
+}
+
+.listingPrice {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.listingCard p {
+  margin: 0;
+  padding: 0 0 8px 0;
+  text-decoration: none;
+}
+
+.category {
+  background-color: rgb(25, 118, 210);
+  border: none;
+  color: white;
+  padding: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 14px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.category:hover {
+  color: white;
+}

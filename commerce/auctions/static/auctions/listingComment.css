@@ -1,0 +1,41 @@
+.commentContainer {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 100%;
+  padding: 4px;
+}
+
+.commentContainer:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+.commentLeftSide {
+  flex: 1;
+}
+
+.commentRightSide {
+  flex: 9;
+}
+
+.commentUsername {
+  font-weight: bold;
+}
+
+.commentCreated {
+  color: #686868;
+  font-size: 0.75rem;
+}
+
+.CommentSection {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.commentForm {
+  width: 100%;
+}
+
+.commentForm input {
+  width: 360px;
+}

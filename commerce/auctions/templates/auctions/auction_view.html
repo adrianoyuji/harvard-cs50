@@ -1,0 +1,109 @@
+{% extends "auctions/layout.html" %} {% block body %} {% if not listing %}
+<h2>{{message}}</h2>
+<a class="nav-link" href="{% url 'index' %}">Go back</a>
+{% else%}
+<span class="listingHeader">
+  <h2>Active Listing</h2>
+  {% if user.is_authenticated %}
+  <form
+    class="headerForm"
+    action="{% url 'handleWatchlist' pk=listing.id %}"
+    method="post"
+  >
+    {% csrf_token %} {% if is_watchlisted %}
+    <button class="watchlisted" type="submit">Watchlisted ✅</button>
+    {% else %}
+    <button class="notWatchlisted" type="submit">Watchlist this item</button>
+    {%endif%}
+  </form>
+  {%endif%} {% if listing.owner.id == user.id and listing.is_active %}
+  <form
+    class="headerForm"
+    action="{% url 'closeListing' pk=listing.id %}"
+    method="post"
+  >
+    {% csrf_token %}
+    <button class="closeListing" type="submit">Close Listing</button>
+  </form>
+  {%endif%}
+</span>
+<section class="listingViewContainer">
+  <img
+    lass="listingViewImage"
+    src="{{listing.image_url}}"
+    alt="{{listing.title}}"
+    width="50%"
+    loading="lazy"
+  />
+  <div class="listingViewDetails">
+    <h2>{{listing.title}}</h2>
+    <p class="listingViewDescription">{{listing.description}}</p>
+    <p class="listingViewDescription">Category: {{listing.category}}</p>
+    <p class="listingViewDescription">
+      Owner: <b>{{listing.owner.username}}</b>
+    </p>
+    <span class="listingViewCreated">Created {{listing.created}}</span>
+    <h3 class="listingViewPrice">
+      ${%if listing.bids.count == 0 %}{{listing.starting_bid}}
+      {%else%}{{listing.bids.last.value}} {%endif%}
+    </h3>
+    <span class="listingViewLabel"
+      >{{listing.bids.count}} bid(s) until now.</span
+    >
+    {% if user.is_authenticated and listing.is_active %}
+    <form
+      class="listingViewForm"
+      action="{% url 'createBid' pk=listing.id %}"
+      method="post"
+    >
+      {% csrf_token %}
+      <input type="number" name="bid_value" placeholder="Place a bid" />
+      <button class="submitButton" type="submit" value="watchilist_add">
+        Place Bid
+      </button>
+    </form>
+    {% if message %} <span class="error-message">{{message}}</span> {%endif%}
+    {%endif %} {% if not listing.is_active %}
+    <h3>This listing is closed</h3>
+    {% if user.is_authenticated and listing.bids.last.owner.id == user.id%}
+    <h2>Congratulations! You won!</h2>
+    {%endif%} {%endif%}
+  </div>
+</section>
+<div class="commentSection">
+  {% if user.is_authenticated %}
+  <form
+    class="commentForm"
+    action="{% url 'createComment' pk=listing.id %}"
+    method="post"
+  >
+    {% csrf_token %}
+    <input
+      type="text"
+      id="comment"
+      name="comment"
+      required
+      minlength="1"
+      maxlength="256"
+      size="10"
+    />
+    <button class="watchlisted" type="submit">Add Comment</button>
+  </form>
+  {% endif %}
+  <h4>Comments ({{listing.comments.count}} total)</h4>
+  <section class="CommentSection">
+    {% for comment in listing.comments.all %}
+    <div class="commentContainer">
+      <div class="commentLeftSide">
+        <h5 class="commentUsername">{{comment.owner.username}}</h5>
+        <span class="commentCreated">Created {{listing.created}}</span>
+      </div>
+      <div class="commentRightSide">
+        <p>{{comment.message}}</p>
+      </div>
+    </div>
+
+    {% endfor %}
+  </section>
+</div>
+{% endif %} {%endblock %}

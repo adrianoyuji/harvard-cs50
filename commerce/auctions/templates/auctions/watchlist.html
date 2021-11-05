@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %} {% block body %}
+<h2>Watchilist</h2>
+<section class="listingContainer">
+  {% for listing in listings %}
+  <a class="listingCard" href="{% url 'listing' pk=listing.id %}">
+    <img
+      src="{{listing.image_url}}"
+      alt="{{listing.title}}"
+      height="256px"
+      loading="lazy"
+    />
+    <h4>{{listing.title}}</h4>
+    {% if not listing.is_active %}
+    <span class="error-message"><b>Closed</b></span
+    >{%endif%}
+    <span class="listingPrice"
+      >${%if listing.bids.count == 0 %}{{listing.starting_bid}}
+      {%else%}{{listing.bids.last.value}} {%endif%}
+    </span>
+    <p>{{listing.description}}</p>
+
+    <span class="listingCreated">Created {{listing.created}}</span>
+  </a>
+  {% endfor %}
+</section>
+{%endblock %}

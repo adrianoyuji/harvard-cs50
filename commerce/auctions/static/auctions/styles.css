@@ -1,0 +1,11 @@
+@import url(./listingCard.css);
+@import url(./listingPage.css);
+@import url(./listingComment.css);
+
+body {
+  padding: 10px;
+}
+
+.error-message {
+  color: crimson;
+}
