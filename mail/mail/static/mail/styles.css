@@ -1,0 +1,48 @@
+textarea {
+  min-height: 400px;
+}
+
+.inbox-item {
+  padding: 4px 8px;
+  border: 1px solid black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  margin: 4px 0;
+  cursor: pointer;
+}
+
+.read-email {
+  background-color: #c5c5c5;
+}
+.unread-email {
+  background-color: #fff;
+}
+
+.inbox-sender {
+  margin-right: 8px;
+}
+
+.inbox-subject {
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex-grow: 1;
+}
+.inbox-timestamp {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.view-email-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+
+.button-container {
+  margin-top: 8px;
+}
