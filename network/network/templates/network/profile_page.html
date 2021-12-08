@@ -1,0 +1,29 @@
+{% extends "network/layout.html" %} {% block body %}
+<div class="container">
+  {% if message %}
+  <span>{{ message }}</span>
+
+  {% else %}
+  <h2>{{profile.username}}</h2>
+  <span><b>Following: </b>{{profile.following.count}}</span>
+  <span><b>Followers: </b>{{profile.followers.count}}</span>
+  {%if user.is_authenticated and user.id != pk %}
+  <form id="follow_form" method="POST" action='{% url "handle_follow" pk=pk %}'>
+    {% csrf_token %} {%if is_following %}
+    <input type="hidden" name="is_following" value="true" />
+    <input type="submit" class="btn btn-secondary btn-sm" value="Unfollow" />
+    {% else %}
+    <input type="hidden" name="is_following" value="false" />
+    <input type="submit" class="btn btn-primary btn-sm" value="Follow" />
+    {% endif %}
+  </form>
+
+  {% endif %}
+
+  <div id="posts-list" class="posts-list"></div>
+  <nav aria-label="..." class="container center">
+    <ul id="paginator" class="pagination"></ul>
+  </nav>
+  {% endif %}
+</div>
+{% endblock %}

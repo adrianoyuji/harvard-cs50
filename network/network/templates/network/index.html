@@ -1,0 +1,19 @@
+{% extends "network/layout.html" %} {% block body %} {% if user.is_authenticated %}
+<form class="post-form" id="create-post">
+  {% csrf_token %}
+  <label for="message">New Post</label>
+  <textarea
+    id="post-message"
+    name="message"
+    required
+    rows="5"
+    cols="33"
+  ></textarea>
+  <input type="submit" class="btn btn-primary btn-sm" />
+</form>
+{% endif %}
+<div id="posts-list" class="posts-list"></div>
+<nav aria-label="..." class="container center">
+  <ul id="paginator" class="pagination"></ul>
+</nav>
+{% endblock %}
