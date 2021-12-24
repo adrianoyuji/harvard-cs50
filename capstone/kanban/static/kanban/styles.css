@@ -1,0 +1,10 @@
+@media screen and (max-width: 991px) {
+  #board-table {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+  }
+
+  #board-table > .col {
+    min-width: 18rem;
+  }
+}

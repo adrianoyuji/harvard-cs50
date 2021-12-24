@@ -1,0 +1,47 @@
+{% extends "kanban/layout.html" %} {% block body %}
+
+<div class="container-lg">
+  <h2>Login</h2>
+
+  {% if message %}
+  <div class="alert alert-warning d-flex align-items-center" role="alert">
+    <svg
+      class="bi flex-shrink-0 me-2"
+      width="24"
+      height="24"
+      role="img"
+      aria-label="Warning:"
+    >
+      <use xlink:href="#exclamation-triangle-fill" />
+    </svg>
+    <div>{{message}}</div>
+  </div>
+  {% endif %}
+
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <input
+        autofocus
+        class="form-control mb-3"
+        required
+        type="text"
+        name="username"
+        placeholder="Username"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control mb-3"
+        required
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+    </div>
+    <input class="btn btn-primary" type="submit" value="Login" />
+  </form>
+
+  Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+</div>
+{% endblock %}

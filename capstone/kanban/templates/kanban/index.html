@@ -1,0 +1,75 @@
+{% extends "kanban/layout.html" %} {% block body %}
+<div class="container-lg">
+  {% if message %}
+  <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
+    <svg
+      class="bi flex-shrink-0 me-2"
+      width="24"
+      height="24"
+      role="img"
+      aria-label="Warning:"
+    >
+      <use xlink:href="#exclamation-triangle-fill" />
+    </svg>
+    <div>{{message}}</div>
+  </div>
+  {% endif %}
+  {% if user.is_authenticated %}
+  <h2 class="my-3">Overview</h2>
+  <h3 class="mb-3">Assigned Tasks</h3>
+  <hr />
+  <div class="list-group" id="assigned-tasks">
+    {% for task in user.assigned_tasks.all %} 
+    {% if task.status != 'done' and task.status != 'closed' %}
+    <a
+      href="{% url 'board' pk=task.board.id %}"
+      class="list-group-item d-flex flex-row"
+      ><span class="flex-grow-1">{{task.description}}</span>
+      {% if task.status == 'backlog' %}
+      <span class="badge bg-secondary mx-3 d-flex align-items-center">{{task.status}}</span>
+      {% endif %}
+      {% if task.status == 'todo' %}
+      <span class="badge bg-primary mx-3 d-flex align-items-center">{{task.status}}</span>
+      {% endif %}
+      {% if task.status == 'inprogress' %}
+      <span class="badge bg-warning mx-3 d-flex align-items-center text-black">{{task.status}}</span>
+      {% endif %}
+      <small class="text-muted text-sm">By {{task.owner.username}}</small></a
+    >
+    {% endif %} {% endfor %}
+  </div>
+  <h3 class="my-3">Review Tasks</h3>
+  <hr />
+  <div class="list-group" id="review-tasks">
+    {% for task in user.review_tasks.all %}
+    {% if task.status != 'closed' %}
+    <a
+      href="{% url 'board' pk=task.board.id %}"
+      class="list-group-item d-flex flex-row"
+      ><span class="flex-grow-1">{{task.description}}</span>
+      {% if task.status == 'backlog' %}
+      <span class="badge bg-secondary mx-3 d-flex align-items-center">{{task.status}}</span>
+      {% endif %}
+      {% if task.status == 'todo' %}
+      <span class="badge bg-primary mx-3 d-flex align-items-center">{{task.status}}</span>
+      {% endif %}
+      {% if task.status == 'inprogress' %}
+      <span class="badge bg-warning mx-3 d-flex align-items-center text-black">{{task.status}}</span>
+      {% endif %}
+      {% if task.status == 'done' %}
+      <span class="badge bg-success mx-3 d-flex align-items-center">{{task.status}}</span>
+      {% endif %}
+      <small class="text-muted text-sm">By {{task.owner.username}}</small></a
+    >
+    {% endif %}
+    {% endfor %}
+  </div>
+  {% else %}
+    <h2 class='my-3'>Welcome to CS50 Kanban!</h2>
+    <p>Kanban is a workflow management method for defining, managing and improving services that deliver knowledge work. It aims to help you visualize your work, maximize efficiency, and improve continuously.</p>
+    <p>This web application was developed as the <a href="https://cs50.harvard.edu/web/2020/projects/final/">Final Project</a> of CS50’s Web Programming with Python and JavaScript. This application was developed by <a href="https://www.linkedin.com/in/adriano-yuji-sato-de-vasconcelos-034b09191/">Adriano Yuji Sato de Vasconcelos</a>, you can check the source code <a href="https://github.com/adrianoyuji/harvard-cs50/tree/main/capstone">clicking here!</a></p>
+    <h2>First steps:</h2>
+    <p><a href="{% url 'register' %}">Create an account</a> and then use the upper navbar to create a Board.</p>
+  {%endif%}
+</div>
+{% endblock %}

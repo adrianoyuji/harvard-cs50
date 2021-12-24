@@ -1,0 +1,22 @@
+{% extends "kanban/layout.html" %} {% load static %} {% block body %}
+<div class="container-lg">
+  <div class="d-flex my-3 align-items-center">
+    <h2 class="flex-grow-1">Notifications</h2>
+    <button
+      type="button"
+      id="update-notifications"
+      class="btn btn-primary btn-md"
+    >
+      Update
+    </button>
+  </div>
+  <ul
+    class="container-lg d-flex flex-column list-group"
+    id="notifications-list"
+  ></ul>
+  <nav aria-label="..." class="d-flex justify-content-center my-3">
+    <ul id="paginator" class="pagination"></ul>
+  </nav>
+</div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "kanban/layout.html" %} {% block body %}
+<div class="container-lg d-flex flex-column">
+  <h2 class="my-3">Hello, {{user.username}}!</h2>
+  <div class="my-1">
+    <strong>Email: </strong>
+    <span>{{user.email}}</span>
+  </div>
+  <div class="my-1">
+    <strong>Member since: </strong>
+    <span>{{user.date_joined}}</span>
+  </div>
+  <hr />
+  <h2>Change Password</h2>
+  {% if error %}
+  <div class="alert alert-warning d-flex align-items-center" role="alert">
+    <svg
+      class="bi flex-shrink-0 me-2"
+      width="24"
+      height="24"
+      role="img"
+      aria-label="Warning:"
+    >
+      <use xlink:href="#exclamation-triangle-fill" />
+    </svg>
+    <div>{{error}}</div>
+  </div>
+  {% endif %}
+  <form class="my-3" action="{% url 'profile' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <input
+        class="form-control mb-3"
+        required
+        type="password"
+        name="password"
+        placeholder="Current password"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control mb-3"
+        required
+        type="password"
+        name="new_password"
+        placeholder="New Password"
+      />
+    </div>
+    <div class="form-group">
+      <input
+        class="form-control mb-3"
+        required
+        type="password"
+        name="confirm_password"
+        placeholder="Repeat Password"
+      />
+    </div>
+    <input class="btn btn-primary" type="submit" value="Change" />
+  </form>
+</div>
+{% endblock %}
