@@ -8,13 +8,9 @@ Project Name: **Kanban Board**
 
 ## **Introduction**
 
----
-
 The application I decided to build is a Kanban Board, it is a Project Management Tool that is designed to help people visualize their work, using columns and cards to specify their task.
 
 ## **Project distinctiveness and complexities**
-
----
 
 This project differs from the previous ones due to the fact that it is an Agile Methodology Tool, where users may use this application to help their work progression and organization.
 
@@ -64,8 +60,6 @@ This Project also contains:
 
 ## **Files**
 
----
-
 The following chart is the file structure of this project, it follows the standard Django folder structure so I decided to ommit some default or unaltered files.
 
 ```
@@ -104,8 +98,6 @@ The following chart is the file structure of this project, it follows the standa
 
 ## **Models**
 
----
-
 This project contains four main models:
 
 ### **User**: Default Django user model.
@@ -136,8 +128,6 @@ This project contains four main models:
 
 ## **Installation and running application**
 
----
-
 This project follows the standard process to run a Django project. Therefore you must have Django installed.
 
 ```
@@ -152,15 +142,13 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-After these commands you an access the application at
+After these commands you can access the application at
 
 ```
 http://127.0.0.1:8000/
 ```
 
 ## **Tests**
-
----
 
 To run tests, you can simply execute this command:
 
@@ -169,8 +157,6 @@ python manage.py test
 ```
 
 ## **Instructions**
-
----
 
 To access this projects features you must register an account, you can access the `/register` page in order to create an account.
 
@@ -181,8 +167,6 @@ Clicking on `View` on a created Board will redirect you to the Kanban Board. By 
 You can change the status of a Task by dragging and dropping it on the desired column on Desktop, on mobile you have to click on `edit` of the Task and change the status value on the select input and then click `Save`.
 
 ## **Conclusion**
-
----
 
 Since I am a frontend developer, developing the interface of this application without the aid of a robust user interface library like React and other npm packages proved to be somewhat challenging. Writing considerably simple features took much more effort to be accomplished without the amenities of a framework, this proved to be a valuable lesson since I can now understand how most frontend libraries work behind the scenes.
 
